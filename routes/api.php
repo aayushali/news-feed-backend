@@ -40,3 +40,5 @@ Route::group([
         Route::get('user', [\App\Http\Controllers\AuthController::class, 'user']);
     });
 });
+Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
+Route::post('store', [\App\Http\Controllers\UserController::class, 'store_user']);
