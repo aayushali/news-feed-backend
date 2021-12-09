@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use http\Client\Curl\User;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
-
+use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
 class UserController extends Controller
 {
     //
@@ -57,6 +59,38 @@ class UserController extends Controller
 
 
     // User Update
+    public function update(Request $request, $id)
+    {
+        if ($id) {
+            $fullname = $request->name;
+            $address = $request->address;
+            $mobile_number = $request->mobile_number;
+            $email = $request->email;
 
+            $user = UserModel::findOrFail($id);
+            $user->name = $fullname;
+            $user->address = $address;
+            $user->mobile_number = $mobile_number;
+            $user->email = $email;
+            $user->save();
+
+            $results = [
+                "data" => $user,
+                "code" => 200,
+                "mesage" => "User Updated Successfully"
+            ];
+            return response()->json($results);
+        }
+    }
+
+    // User delete query
+    public function destroy ($id){
+        if ($id){
+            $user = UserModel::findOrFail($id);
+            $user->delete();
+            $user = UserModel::all();
+            return response()->json($user);
+        }
+    }
 }
 
