@@ -43,8 +43,11 @@ Route::group([
         Route::post('user_update/{id}', [\App\Http\Controllers\UserController::class, 'update']);
         Route::get('user_delete/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
         Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
+        Route::get('tags-list', [\App\Http\Controllers\TagController::class, 'index']);
+        Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
+
+
     });
 });
-Route::get('tags-list', [\App\Http\Controllers\TagController::class, 'index']);
-Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
-Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
+//Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
+//Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
