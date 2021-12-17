@@ -15,7 +15,6 @@ class CreatePublishersTable extends Migration
     {
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('pub_name');
             $table->string('pub_email');
             $table->string('pub_registration_no');
@@ -23,6 +22,7 @@ class CreatePublishersTable extends Migration
             $table->string('pub_password');
             $table->json('pub_contact_details');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
