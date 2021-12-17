@@ -29,19 +29,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'auth'
-], function(){
-    Route::post('login', [\App\Http\Controllers\AuthController::class , 'login']);
+], function () {
+    Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
     Route::post('signup', [\App\Http\Controllers\AuthController::class, 'signup']);
 
     Route::group([
         'middleware' => 'auth:api'
-    ], function(){
+    ], function () {
         Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
         Route::get('user', [\App\Http\Controllers\AuthController::class, 'user']);
+        Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\UserController::class, 'store_user']);
+        Route::post('user_update/{id}', [\App\Http\Controllers\UserController::class, 'update']);
+        Route::get('user_delete/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
     });
 });
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
-Route::post('store', [\App\Http\Controllers\UserController::class, 'store_user']);
-Route::post('user_update/{id}', [\App\Http\Controllers\UserController::class, 'update']);
-Route::post('user_delete/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+
 

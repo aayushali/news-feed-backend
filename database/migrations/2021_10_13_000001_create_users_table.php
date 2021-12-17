@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('mobile_number');
+            $table->string('mobile_number')->nullable();
             $table->boolean('status')->default(false);
             $table->softDeletes();
             $table->string('email')->unique();
