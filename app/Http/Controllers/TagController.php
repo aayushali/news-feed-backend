@@ -22,12 +22,12 @@ class TagController extends Controller
 
     public function store_tag(Request $request)
     {
-        $validatedData = $request -> validate([
-            'name' => 'required',
+        $validatedData = $request->validate([
+            'tag_name' => 'required',
             'tag_type' => 'required',
         ]);
         if ($validatedData) {
-            $tag_name = $request->name;
+            $tag_name = $request->tag_name;
             $tag_type = $request->tag_type;
             $tag = new TagModel;
             $tag->tag_name = $tag_name;
@@ -41,8 +41,30 @@ class TagController extends Controller
         ];
         return response()->json($results);
     }
-    public function destroy ($id) {
-        if($id){
+
+    // tag updating
+    public function updateTag(Request $request, $id)
+    {
+        if ($id) {
+            $tagName = $request->tag_name;
+            $tagType = $request->tag_type;
+            $tag = TagModel::findOrFail($id);
+            $tag->tag_name = $tagName;
+            $tag->tag_type = $tagType;
+            $tag->save();
+            $results = [
+                "data" => $tag,
+                "code" => 200,
+                "message" => "Tag updated successfully"
+            ];
+            return response()->json($results);
+        }
+
+    }
+
+    public function destroy($id)
+    {
+        if ($id) {
             $tag = TagModel::findOrFail($id);
             $tag->delete();
             $tag = TagModel::all();

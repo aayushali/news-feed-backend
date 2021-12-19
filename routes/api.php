@@ -45,8 +45,7 @@ Route::group([
         Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
         Route::get('tags-list', [\App\Http\Controllers\TagController::class, 'index']);
         Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
-
-
+        Route::post('update_tag/{id}', [\App\Http\Controllers\TagController::class, 'updateTag']);
     });
 });
 //Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
