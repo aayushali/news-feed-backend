@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CategoryModel extends Model
 {
     use HasFactory, SoftDeletes;
-//    protected $table="categories";
+    protected $table="categories";
 }

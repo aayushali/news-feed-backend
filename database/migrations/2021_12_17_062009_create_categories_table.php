@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('category_name');
             $table->string('category_type');
-            $table->json('extras');
+            $table->json('extras')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

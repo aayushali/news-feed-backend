@@ -38,15 +38,26 @@ Route::group([
     ], function () {
         Route::get('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
         Route::get('user', [\App\Http\Controllers\AuthController::class, 'user']);
+
+        // Users CRUD API
         Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
         Route::post('store', [\App\Http\Controllers\UserController::class, 'store_user']);
         Route::post('user_update/{id}', [\App\Http\Controllers\UserController::class, 'update']);
         Route::get('user_delete/{id}', [\App\Http\Controllers\UserController::class, 'destroy']);
+
+        // Tags CRUD API
         Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
         Route::get('tags-list', [\App\Http\Controllers\TagController::class, 'index']);
         Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
         Route::post('update_tag/{id}', [\App\Http\Controllers\TagController::class, 'updateTag']);
+
+
+        // Categories CRUD API
+        Route::get('categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+        Route::post('store_category', [\App\Http\Controllers\CategoryController::class, 'store_category']);
+        Route::post('update/{id}', [\App\Http\Controllers\CategoryController::class, 'updateCategory']);
+        Route::get('delete/{id}',[\App\Http\Controllers\CategoryController::class, 'destroy'] );
+
     });
 });
-//Route::post('store_tag', [\App\Http\Controllers\TagController::class, 'store_tag']);
-//Route::get('tag_delete/{id}', [\App\Http\Controllers\TagController::class, 'destroy']);
+
