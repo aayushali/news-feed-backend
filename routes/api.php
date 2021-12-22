@@ -53,11 +53,19 @@ Route::group([
 
 
         // Categories CRUD API
-        Route::get('categories', [\App\Http\Controllers\CategoryController::class, 'index']);
-        Route::post('store_category', [\App\Http\Controllers\CategoryController::class, 'store_category']);
-        Route::post('update/{id}', [\App\Http\Controllers\CategoryController::class, 'updateCategory']);
-        Route::get('delete/{id}',[\App\Http\Controllers\CategoryController::class, 'destroy'] );
+        Route::group([
+            'prefix' => 'category'
+        ], function () {
+            Route::get('categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+            Route::post('store_category', [\App\Http\Controllers\CategoryController::class, 'store_category']);
+            Route::post('update/{id}', [\App\Http\Controllers\CategoryController::class, 'updateCategory']);
+            Route::get('delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+        });
 
+        Route::get('publishers', [\App\Http\Controllers\PublisherController::class, 'index']);
+        Route::post('publisher/create', [\App\Http\Controllers\PublisherController::class, 'store']);
+        Route::delete('publisher/delete/{id}', [\App\Http\Controllers\PublisherController::class, 'destroy']);
     });
-});
 
+
+});
